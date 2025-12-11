@@ -105,7 +105,7 @@ def run_experiment(optimizer_class, optimizer_params, lr_low=1e-4, lr_high=10):
         return final_loss
 
     grid = np.linspace(math.log10(lr_low), math.log10(lr_high), 6)
-    ret = mbs_minimize(objective, grid=grid, num_binary=6, step=1, log_scale=True)
+    ret = mbs_minimize(objective, grid=grid, num_candidates=1, num_binary=6, step=1, log_scale=True)
 
     trials = sorted([(lr, loss[0]) for lr,loss in ret.items()], key=lambda x: x[1])
     best_lr, best_value = trials[0]
